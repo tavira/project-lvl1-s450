@@ -15,6 +15,9 @@
   },
   "author": "tavira",
   "license": "ISC",
+  "dependencies": {
+    "readline-sync": "^1.4.9"
+  },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.3.3",
@@ -29,8 +32,5 @@
   "keywords": [
     "brain-games",
     "hexlet"
-  ],
-  "dependencies": {
-    "readline-sync": "^1.4.9"
-  }
+  ]
 }
