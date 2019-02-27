@@ -1,6 +1,7 @@
 import readlineSync from 'readline-sync';
 import { run as runCalc, showDescription as showDescriptionCalc } from './games/calc';
 import { run as runEven, showDescription as showDescriptionEven } from './games/even';
+import { run as runGcd, showDescription as showDescriptionGcd } from './games/gcd';
 
 const askUserName = () => {
   console.log();
@@ -25,6 +26,9 @@ const play = (neededRightAnswersCount, gameType) => {
   if (gameType === 'calc') {
     showDescriptionCalc();
   }
+  if (gameType === 'gcd') {
+    showDescriptionGcd();
+  }
   const userName = askUserName();
   greetUser(userName);
   console.log();
@@ -34,6 +38,9 @@ const play = (neededRightAnswersCount, gameType) => {
   }
   if (gameType === 'calc') {
     runCalc(neededRightAnswersCount, 0, userName);
+  }
+  if (gameType === 'gcd') {
+    runGcd(neededRightAnswersCount, 0, userName);
   }
 };
 

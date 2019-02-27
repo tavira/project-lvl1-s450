@@ -1,4 +1,4 @@
-import { createAnswer, checkAnswer } from '.';
+import { createAnswer, checkAnswer, isEven } from '.';
 
 const showDescription = () => {
   console.log('Answer "yes" if number even otherwise answer "no".');
@@ -19,7 +19,6 @@ const run = (neededAnswerCount, currentAnswerCount, name) => {
 
   const question = createQuestion();
   const answer = createAnswer();
-  const isEven = num => (num % 2 === 0);
   const rightAnswer = isEven(question) ? 'yes' : 'no';
 
   checkAnswer(answer, rightAnswer, run, neededAnswerCount, currentAnswerCount, name);

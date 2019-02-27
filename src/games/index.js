@@ -17,4 +17,6 @@ const checkAnswer = (
   }
 };
 
-export { createAnswer, checkAnswer };
+const isEven = num => (num % 2 === 0);
+
+export { createAnswer, checkAnswer, isEven };
