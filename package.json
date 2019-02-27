@@ -1,10 +1,11 @@
 {
   "name": "tavira-brain-games",
-  "version": "1.2.4",
+  "version": "1.3.0",
   "description": "Brain Games Hexlet Project",
   "bin": {
     "brain-games": "dist/bin/brain-games.js",
-    "brain-even": "dist/bin/brain-even.js"
+    "brain-even": "dist/bin/brain-even.js",
+    "brain-calc": "dist/bin/brain-calc.js"
   },
   "files": [
     "dist"
