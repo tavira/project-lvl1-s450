@@ -1,4 +1,4 @@
-import readlineSync from 'readline-sync';
+import { createAnswer, checkAnswer } from '.';
 
 const showDescription = () => {
   console.log('Answer "yes" if number even otherwise answer "no".');
@@ -9,11 +9,6 @@ const createQuestion = () => {
   const question = Math.floor(Math.random() * maxRandomNumber);
   console.log(`Question: ${question}`);
   return question;
-};
-
-const createAnswer = () => {
-  const answer = readlineSync.question('Your answer: ');
-  return answer;
 };
 
 const run = (neededAnswerCount, currentAnswerCount, name) => {
@@ -27,13 +22,7 @@ const run = (neededAnswerCount, currentAnswerCount, name) => {
   const isEven = num => (num % 2 === 0);
   const rightAnswer = isEven(question) ? 'yes' : 'no';
 
-  if (rightAnswer === answer) {
-    console.log('Correct!');
-    run(neededAnswerCount, currentAnswerCount + 1, name);
-  } else {
-    console.log(`'${answer}' is wrong answer ;(. Correct answer was '${rightAnswer}'`);
-    console.log(`Let's try again, ${name}!`);
-  }
+  checkAnswer(answer, rightAnswer, run, neededAnswerCount, currentAnswerCount, name);
 };
 
 export { run, showDescription };
