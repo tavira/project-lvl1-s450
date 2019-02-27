@@ -2,4 +2,4 @@
 
 import { play } from '..';
 
-play();
+play(3);
