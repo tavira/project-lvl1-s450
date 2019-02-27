@@ -1,4 +1,6 @@
 import readlineSync from 'readline-sync';
+import { run as runCalc, showDescription as showDescriptionCalc } from './games/calc';
+import { run as runEven, showDescription as showDescriptionEven } from './games/even';
 
 const askUserName = () => {
   console.log();
@@ -15,46 +17,24 @@ const greet = () => {
   greetUser(askUserName());
 };
 
-const createQuestion = () => {
-  const maxRandomNumber = 100;
-  const question = Math.floor(Math.random() * maxRandomNumber);
-  console.log(`Question: ${question}`);
-  return question;
-};
-
-const createAnswer = () => {
-  const answer = readlineSync.question('Your answer: ');
-  return answer;
-};
-
-const run = (neededAnswerCount, currentAnswerCount, name) => {
-  if (neededAnswerCount === currentAnswerCount) {
-    console.log(`Congratulations, ${name}!`);
-    return;
-  }
-
-  const question = createQuestion();
-  const answer = createAnswer();
-  const isEven = num => (num % 2 === 0);
-  const rightAnswer = isEven(question) ? 'yes' : 'no';
-
-  if (rightAnswer === answer) {
-    console.log('Correct!');
-    run(neededAnswerCount, currentAnswerCount + 1, name);
-  } else {
-    console.log(`'${answer}' is wrong answer ;(. Correct answer was '${rightAnswer}'`);
-    console.log(`Let's try again, ${name}!`);
-  }
-};
-
-const play = (neededRightAnswersCount) => {
+const play = (neededRightAnswersCount, gameType) => {
   console.log('Welcome to the Brain Games');
-  console.log('Answer "yes" if number even otherwise answer "no".');
+  if (gameType === 'even') {
+    showDescriptionEven();
+  }
+  if (gameType === 'calc') {
+    showDescriptionCalc();
+  }
   const userName = askUserName();
   greetUser(userName);
   console.log();
 
-  run(neededRightAnswersCount, 0, userName);
+  if (gameType === 'even') {
+    runEven(neededRightAnswersCount, 0, userName);
+  }
+  if (gameType === 'calc') {
+    runCalc(neededRightAnswersCount, 0, userName);
+  }
 };
 
 export { play, greet };

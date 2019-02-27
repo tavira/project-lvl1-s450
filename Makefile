@@ -7,6 +7,9 @@ start-brain-games:
 start-brain-even:
 	npx babel-node -- src/bin/brain-even.js
 
+start-brain-calc:
+	npx babel-node -- src/bin/brain-calc.js
+
 publish:
 	npm publish
 

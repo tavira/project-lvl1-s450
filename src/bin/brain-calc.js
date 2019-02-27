@@ -2,4 +2,4 @@
 
 import { play } from '..';
 
-play(3, 'even');
+play(3, 'calc');
