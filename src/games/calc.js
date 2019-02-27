@@ -1,4 +1,4 @@
-import readlineSync from 'readline-sync';
+import { createAnswer, checkAnswer } from '.';
 
 const showDescription = () => {
   console.log('What is the result of the expression?');
@@ -45,11 +45,6 @@ const getRightAnswer = (expr) => {
   return answer.toString();
 };
 
-const createAnswer = () => {
-  const answer = readlineSync.question('Your answer: ');
-  return answer;
-};
-
 const run = (neededAnswerCount, currentAnswerCount, name) => {
   if (neededAnswerCount === currentAnswerCount) {
     console.log(`Congratulations, ${name}!`);
@@ -59,13 +54,7 @@ const run = (neededAnswerCount, currentAnswerCount, name) => {
   const rightAnswer = getRightAnswer(createQuestion());
   const answer = createAnswer();
 
-  if (rightAnswer === answer) {
-    console.log('Correct!');
-    run(neededAnswerCount, currentAnswerCount + 1, name);
-  } else {
-    console.log(`'${answer}' is wrong answer ;(. Correct answer was '${rightAnswer}'`);
-    console.log(`Let's try again, ${name}!`);
-  }
+  checkAnswer(answer, rightAnswer, run, neededAnswerCount, currentAnswerCount, name);
 };
 
 export { run, showDescription };
