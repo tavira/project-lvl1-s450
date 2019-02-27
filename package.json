@@ -1,10 +1,10 @@
 {
   "name": "tavira-brain-games",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Brain Games Hexlet Project",
   "bin": {
     "brain-games": "dist/bin/brain-games.js",
-    "brain-even": "dist/bin/brain-games.js"
+    "brain-even": "dist/bin/brain-even.js"
   },
   "files": [
     "dist"
@@ -15,6 +15,9 @@
   },
   "author": "tavira",
   "license": "ISC",
+  "dependencies": {
+    "readline-sync": "^1.4.9"
+  },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.3.3",
@@ -29,8 +32,5 @@
   "keywords": [
     "brain-games",
     "hexlet"
-  ],
-  "dependencies": {
-    "readline-sync": "^1.4.9"
-  }
+  ]
 }

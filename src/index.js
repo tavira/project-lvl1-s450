@@ -24,7 +24,8 @@ const greet = () => {
 };
 
 const createQuestion = () => {
-  const questionNumber = Math.floor(Math.random() * 100);
+  const maxRandomNumber = 100;
+  const questionNumber = Math.floor(Math.random() * maxRandomNumber);
   console.log(`Question: ${questionNumber}`);
   return questionNumber;
 };
@@ -44,7 +45,7 @@ const run = (neededAnswerCount, currentAnswerCount, name) => {
   const questionNumber = createQuestion();
   const answer = createAnswer();
   if (isEven(questionNumber) === answer) {
-    console.log('Correct');
+    console.log('Correct!');
     run(neededAnswerCount, currentAnswerCount + 1, name);
   } else {
     console.log(`'${answer}' is wrong answer ;(. Correct answer was '${isEven(questionNumber)}'`);
