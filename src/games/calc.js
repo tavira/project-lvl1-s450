@@ -1,8 +1,7 @@
-import { createAnswer, checkAnswer } from '.';
+import runGame from '../engine';
+import { generateRandomNumber } from '../utils';
 
-const showDescription = () => {
-  console.log('What is the result of the expression?');
-};
+const descriptionGame = 'What is the result of the expression?';
 
 const chooseRandomOperator = () => {
   const rnd = Math.random();
@@ -17,12 +16,8 @@ const chooseRandomOperator = () => {
 
 const createQuestion = () => {
   const operator = chooseRandomOperator();
-  const maxRandomNumber = 100;
-  const operand1 = Math.floor(Math.random() * maxRandomNumber);
-  const operand2 = Math.floor(Math.random() * maxRandomNumber);
-
-  console.log(`Question: ${operand1} ${operator} ${operand2}`);
-
+  const operand1 = generateRandomNumber(0, 100);
+  const operand2 = generateRandomNumber(0, 100);
   return {
     operand1,
     operator,
@@ -42,19 +37,11 @@ const getRightAnswer = (expr) => {
   if (operator === '*') {
     answer = operand1 * operand2;
   }
-  return answer.toString();
+  return answer;
 };
 
-const run = (neededAnswerCount, currentAnswerCount, name) => {
-  if (neededAnswerCount === currentAnswerCount) {
-    console.log(`Congratulations, ${name}!`);
-    return;
-  }
-
-  const rightAnswer = getRightAnswer(createQuestion());
-  const answer = createAnswer();
-
-  checkAnswer(answer, rightAnswer, run, neededAnswerCount, currentAnswerCount, name);
+const play = () => {
+  runGame(createQuestion, getRightAnswer, descriptionGame);
 };
 
-export { run, showDescription };
+export default play;

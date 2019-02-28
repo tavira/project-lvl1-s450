@@ -1,27 +1,24 @@
-import { createAnswer, checkAnswer, isEven } from '.';
+import runGame from '../engine';
+import {
+  generateRandomNumber, isEven,
+} from '../utils';
 
-const showDescription = () => {
-  console.log('Answer "yes" if number even otherwise answer "no".');
-};
+const descriptionGame = 'Answer "yes" if number even otherwise answer "no".';
 
 const createQuestion = () => {
-  const maxRandomNumber = 100;
-  const question = Math.floor(Math.random() * maxRandomNumber);
-  console.log(`Question: ${question}`);
-  return question;
+  const question = generateRandomNumber(0, 100);
+  return {
+    question,
+  };
 };
 
-const run = (neededAnswerCount, currentAnswerCount, name) => {
-  if (neededAnswerCount === currentAnswerCount) {
-    console.log(`Congratulations, ${name}!`);
-    return;
-  }
-
-  const question = createQuestion();
-  const answer = createAnswer();
-  const rightAnswer = isEven(question) ? 'yes' : 'no';
-
-  checkAnswer(answer, rightAnswer, run, neededAnswerCount, currentAnswerCount, name);
+const getRightAnswer = (value) => {
+  const { question } = value;
+  return isEven(question) ? 'yes' : 'no';
 };
 
-export { run, showDescription };
+const play = () => {
+  runGame(createQuestion, getRightAnswer, descriptionGame);
+};
+
+export default play;

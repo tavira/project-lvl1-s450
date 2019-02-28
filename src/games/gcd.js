@@ -1,16 +1,13 @@
-import { createAnswer, checkAnswer, isEven } from '.';
+import runGame from '../engine';
+import {
+  generateRandomNumber, isEven,
+} from '../utils';
 
-const showDescription = () => {
-  console.log('Find the greatest common divisor of given numbers.');
-};
+const descriptionGame = 'Find the greatest common divisor of given numbers.';
 
 const createQuestion = () => {
-  const maxRandomNumber = 100;
-  const number1 = Math.floor(Math.random() * maxRandomNumber);
-  const number2 = Math.floor(Math.random() * maxRandomNumber);
-
-  console.log(`Question ${number1} ${number2}`);
-
+  const number1 = generateRandomNumber(0, 100);
+  const number2 = generateRandomNumber(0, 100);
   return {
     number1,
     number2,
@@ -44,20 +41,11 @@ const gcd = (m, n) => {
 
 const getRightAnswer = (numbers) => {
   const { number1, number2 } = numbers;
-  return gcd(number1, number2).toString();
+  return gcd(number1, number2);
 };
 
-const run = (neededAnswerCount, currentAnswerCount, name) => {
-  if (neededAnswerCount === currentAnswerCount) {
-    console.log(`Congratulations, ${name}!`);
-    return;
-  }
-
-  const question = createQuestion();
-  const answer = createAnswer();
-  const rightAnswer = getRightAnswer(question);
-
-  checkAnswer(answer, rightAnswer, run, neededAnswerCount, currentAnswerCount, name);
+const play = () => {
+  runGame(createQuestion, getRightAnswer, descriptionGame);
 };
 
-export { run, showDescription };
+export default play;
