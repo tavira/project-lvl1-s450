@@ -1,8 +1,10 @@
 import { cons } from 'hexlet-pairs';
 import runGame from '../engine';
-import { generateRandomNumber, isEven } from '../utils';
+import generateRandomNumber from '../utils';
 
 const descriptionGame = 'Answer "yes" if number even otherwise answer "no".';
+
+const isEven = number => (number % 2 === 0);
 
 const getRightAnswer = question => (isEven(question) ? 'yes' : 'no');
 
