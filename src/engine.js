@@ -1,4 +1,5 @@
 import readlineSync from 'readline-sync';
+import { car, cdr } from 'hexlet-pairs';
 
 const askUserName = () => {
   const userName = readlineSync.question('May I have your name? ');
@@ -9,9 +10,7 @@ const greetUser = (name) => {
   console.log(`Hello, ${name}!`);
 };
 
-const showQuestion = question => Object.values(question).join(' ');
-
-const runGame = (createQuestion, getRightAnswer, descriptionGame = '') => {
+const runGame = (descriptionGame, createQuestionAnswerPair) => {
   console.log('Welcome to the Brain Games');
   console.log(descriptionGame);
   console.log();
@@ -24,12 +23,13 @@ const runGame = (createQuestion, getRightAnswer, descriptionGame = '') => {
 
   const runGameStage = (rightAnswerCount) => {
     if (neededAnswerCount === rightAnswerCount) {
-      console.log(`Congratulations, ${userName}`);
+      console.log(`Congratulations, ${userName}!`);
       return;
     }
-    const question = createQuestion();
-    const rightAnswer = getRightAnswer(question).toString();
-    console.log(`Question: ${showQuestion(question)}`);
+    const questionAnswerPair = createQuestionAnswerPair();
+    const question = car(questionAnswerPair);
+    const rightAnswer = cdr(questionAnswerPair);
+    console.log(`Question: ${question}`);
     const userAnswer = readlineSync.question('Your answer: ');
     if (rightAnswer === userAnswer) {
       console.log('Correct!');
@@ -39,9 +39,7 @@ const runGame = (createQuestion, getRightAnswer, descriptionGame = '') => {
       console.log(`Let's try again, ${userName}!`);
     }
   };
-  if (createQuestion !== undefined && getRightAnswer !== undefined) {
-    runGameStage(currentAnswerCount);
-  }
+  runGameStage(currentAnswerCount);
 };
 
 export default runGame;

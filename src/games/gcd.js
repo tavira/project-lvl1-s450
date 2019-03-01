@@ -1,51 +1,28 @@
+import { cons } from 'hexlet-pairs';
 import runGame from '../engine';
-import {
-  generateRandomNumber, isEven,
-} from '../utils';
+import generateRandomNumber from '../utils';
 
 const descriptionGame = 'Find the greatest common divisor of given numbers.';
 
-const createQuestion = () => {
-  const number1 = generateRandomNumber(0, 100);
-  const number2 = generateRandomNumber(0, 100);
-  return {
-    number1,
-    number2,
-  };
-};
-
 const gcd = (m, n) => {
-  if (m === 0) {
-    return n;
-  }
   if (n === 0) {
     return m;
   }
-  if (m === n) {
-    return m;
-  }
-  if (isEven(m) && isEven(n)) {
-    return 2 * gcd(m / 2, n / 2);
-  }
-  if (isEven(m) && !isEven(n)) {
-    return gcd(m / 2, n);
-  }
-  if (!isEven(m) && isEven(n)) {
-    return gcd(m, n / 2);
-  }
-  if (n > m) {
-    return gcd((n - m) / 2, m);
-  }
-  return gcd((m - n) / 2, n);
+  return gcd(n, m % n);
 };
 
-const getRightAnswer = (numbers) => {
-  const { number1, number2 } = numbers;
-  return gcd(number1, number2);
+const getRightAnswer = (number1, number2) => gcd(number1, number2).toString();
+
+const createQuestionAnswerPair = () => {
+  const number1 = generateRandomNumber(0, 100);
+  const number2 = generateRandomNumber(0, 100);
+  const question = `${number1} ${number2}`;
+  const answer = getRightAnswer(number1, number2);
+  return cons(question, answer);
 };
 
 const play = () => {
-  runGame(createQuestion, getRightAnswer, descriptionGame);
+  runGame(descriptionGame, createQuestionAnswerPair);
 };
 
 export default play;
