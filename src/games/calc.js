@@ -19,17 +19,16 @@ const chooseRandomOperator = () => {
 };
 
 const getRightAnswer = (operand1, operator, operand2) => {
-  let answer;
-  if (operator === '+') {
-    answer = operand1 + operand2;
+  switch (operator) {
+    case '+':
+      return (operand1 + operand2).toString();
+    case '-':
+      return (operand1 - operand2).toString();
+    case '*':
+      return (operand1 * operand2).toString();
+    default:
+      return '';
   }
-  if (operator === '-') {
-    answer = operand1 - operand2;
-  }
-  if (operator === '*') {
-    answer = operand1 * operand2;
-  }
-  return answer.toString();
 };
 
 const createQuestionAnswerPair = () => {
@@ -41,8 +40,4 @@ const createQuestionAnswerPair = () => {
   return cons(question, answer);
 };
 
-const play = () => {
-  runGame(descriptionGame, createQuestionAnswerPair);
-};
-
-export default play;
+export default () => runGame(descriptionGame, createQuestionAnswerPair);

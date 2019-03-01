@@ -15,7 +15,7 @@ const generateProgression = (length, startPoint, commonDifference) => {
   return iter(0, [startPoint]);
 };
 
-const createQuestionAndAnswerPair = () => {
+const createQuestionAnswerPair = () => {
   const startPoint = generateRandomNumber(0, 10);
   const commonDifference = generateRandomNumber(0, 10);
   const progressionLength = 10;
@@ -29,8 +29,4 @@ const createQuestionAndAnswerPair = () => {
   return cons(question, answer);
 };
 
-const play = () => {
-  runGame(descriptionGame, createQuestionAndAnswerPair);
-};
-
-export default play;
+export default () => runGame(descriptionGame, createQuestionAnswerPair);

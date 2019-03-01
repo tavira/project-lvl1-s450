@@ -21,8 +21,4 @@ const createQuestionAnswerPair = () => {
   return cons(question, answer);
 };
 
-const play = () => {
-  runGame(descriptionGame, createQuestionAnswerPair);
-};
-
-export default play;
+export default () => runGame(descriptionGame, createQuestionAnswerPair);
