@@ -1,24 +1,19 @@
+import { cons } from 'hexlet-pairs';
 import runGame from '../engine';
-import {
-  generateRandomNumber, isEven,
-} from '../utils';
+import { generateRandomNumber, isEven } from '../utils';
 
 const descriptionGame = 'Answer "yes" if number even otherwise answer "no".';
 
-const createQuestion = () => {
-  const question = generateRandomNumber(0, 100);
-  return {
-    question,
-  };
-};
+const getRightAnswer = question => (isEven(question) ? 'yes' : 'no');
 
-const getRightAnswer = (value) => {
-  const { question } = value;
-  return isEven(question) ? 'yes' : 'no';
+const createQuestionAnswerPair = () => {
+  const question = generateRandomNumber(0, 100);
+  const answer = getRightAnswer(question);
+  return cons(question, answer);
 };
 
 const play = () => {
-  runGame(createQuestion, getRightAnswer, descriptionGame);
+  runGame(descriptionGame, createQuestionAnswerPair);
 };
 
 export default play;
