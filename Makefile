@@ -13,6 +13,9 @@ start-brain-calc:
 start-brain-gcd:
 	npx babel-node -- src/bin/brain-gcd.js
 
+start-brain-progression:
+	npx babel-node -- src/bin/brain-progression.js
+
 publish:
 	npm publish
 
