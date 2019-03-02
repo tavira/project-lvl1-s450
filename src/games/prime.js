@@ -5,10 +5,13 @@ import runGame from '../engine';
 const descriptionGame = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
 const isPrime = (n) => {
-  if (n < 1) {
+  if (typeof n !== 'number') {
     return false;
   }
-  if (n === 1) {
+  if (n <= 1) {
+    return false;
+  }
+  if (n === 2) {
     return true;
   }
   if (isEven(n)) {
@@ -35,3 +38,5 @@ const createQuestionAnswerPair = () => {
 };
 
 export default () => runGame(descriptionGame, createQuestionAnswerPair);
+
+export { isPrime };
