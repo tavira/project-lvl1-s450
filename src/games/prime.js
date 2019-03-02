@@ -38,5 +38,3 @@ const createQuestionAnswerPair = () => {
 };
 
 export default () => runGame(descriptionGame, createQuestionAnswerPair);
-
-export { isPrime };
