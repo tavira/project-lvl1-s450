@@ -1,10 +1,19 @@
 import { cons } from 'hexlet-pairs';
-import generateRandomNumber from '../utils';
+import { generateRandomNumber, isEven } from '../utils';
 import runGame from '../engine';
 
 const descriptionGame = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
 const isPrime = (n) => {
+  if (n < 1) {
+    return false;
+  }
+  if (n === 1) {
+    return true;
+  }
+  if (isEven(n)) {
+    return false;
+  }
   const iter = (counter) => {
     if (counter === n) {
       return true;
@@ -14,7 +23,7 @@ const isPrime = (n) => {
     }
     return iter(counter + 1);
   };
-  return iter(2);
+  return iter(3);
 };
 
 const getRightAnswer = question => (isPrime(question) ? 'yes' : 'no');

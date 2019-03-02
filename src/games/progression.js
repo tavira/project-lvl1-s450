@@ -1,6 +1,6 @@
 import { cons } from 'hexlet-pairs';
 import runGame from '../engine';
-import generateRandomNumber from '../utils';
+import { generateRandomNumber } from '../utils';
 
 const descriptionGame = 'What number is missing in the progression?';
 
