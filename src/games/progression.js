@@ -15,15 +15,16 @@ const generateProgression = (length, startPoint, commonDifference) => {
   return iter(0, [startPoint]);
 };
 
+const progressionLength = 10;
+
 const createQuestionAnswerPair = () => {
   const startPoint = generateRandomNumber(0, 10);
   const commonDifference = generateRandomNumber(0, 10);
-  const progressionLength = 10;
 
   const progression = generateProgression(progressionLength, startPoint, commonDifference);
-  const hiddenPosition = generateRandomNumber(0, 9);
-  const answer = progression[hiddenPosition].toString();
-  progression[hiddenPosition] = '..';
+  const hiddenElementPosition = generateRandomNumber(0, progressionLength - 1);
+  const answer = progression[hiddenElementPosition].toString();
+  progression[hiddenElementPosition] = '..';
   const question = progression.join(' ');
 
   return cons(question, answer);
